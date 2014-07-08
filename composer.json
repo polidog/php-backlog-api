@@ -1,0 +1,21 @@
+{
+    "name": "polidog/php-backlog-api",
+    "description": "Backlog API v2 Wrapper Library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "polidog",
+            "email": "polidogs@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {"Backlog": "lib/"}
+    }
+}
