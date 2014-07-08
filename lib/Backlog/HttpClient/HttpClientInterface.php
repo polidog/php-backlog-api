@@ -57,7 +57,6 @@ interface HttpClientInterface {
      *
      * @param $path
      * @param null $body
-     * @param array $parameters
      * @param string $httpMethod
      * @param array $headers
      * @param array $options
@@ -70,4 +69,13 @@ interface HttpClientInterface {
      * @param string $apiToken
      */
     public function authenticate($apiToken);
+
+
+    /**
+     * オプションを設定する
+     * @param $name
+     * @param $value
+     * @return HttpClient
+     */
+    public function setOption($name, $value);
 }

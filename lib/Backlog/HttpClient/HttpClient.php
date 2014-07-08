@@ -96,6 +96,15 @@ class HttpClient implements HttpClientInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function setOption($name, $value)
+    {
+        $this->options[$name] = $value;
+        return $this;
+    }
+
+    /**
      * HTTP Request send
      * @param string $httpMethod
      * @param string $path
