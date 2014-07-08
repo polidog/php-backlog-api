@@ -6,6 +6,8 @@
  * Time: 20:40
  */
 
+namespace Backlog;
+
 interface ClientInterface {
 
     /**

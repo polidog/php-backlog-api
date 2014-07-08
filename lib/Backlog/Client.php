@@ -5,7 +5,9 @@
  * Date: 2014/07/08
  * Time: 20:39
  */
+namespace Backlog;
 
+use Backlog\Exception\NoSupportApiException;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 
 /**
@@ -33,7 +35,11 @@ class Client implements ClientInterface
      */
     public function api($name)
     {
-        return;
+        switch(strtolower($name)) {
+            default:
+                throw new NoSupportApiException(sprintf('Undefined api instance called: "%s"', $name));
+                break;
+        }
     }
 
     /**
