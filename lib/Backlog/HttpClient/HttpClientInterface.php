@@ -63,7 +63,7 @@ interface HttpClientInterface {
      * @param array $options
      * @return mixed
      */
-    public function request($path, $body = null, array $parameters = [], $httpMethod = 'GET', array $headers = [], array $options = []);
+    public function request($path, $body = null, $httpMethod = 'GET', array $headers = [], array $options = []);
 
     /**
      * 認証

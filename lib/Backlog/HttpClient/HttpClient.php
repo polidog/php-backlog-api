@@ -10,17 +10,16 @@ namespace Backlog\HttpClient;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface as GuzzleHttpClientInterface;
+use GuzzleHttp\ClientInterface;
 
 class HttpClient implements HttpClientInterface
 {
     protected $options = [
-        'base_url' => 'https://%s.backlog.jp',
+        'base_url' => 'https://test.backlog.jp',
         'user_agent' => 'php-backlog-api (polidog)',
         'timeout' => 30,
 
         'api_version' => 'v2',
-        'user_space' => null,
     ];
 
     protected $headers = [];
@@ -30,27 +29,27 @@ class HttpClient implements HttpClientInterface
     /**
      * コンストラクタ
      * @param array $options
-     * @param GuzzleHttpClientInterface $client
+     * @param ClientInterface $client
      */
-    public function __construct(array $options = [], GuzzleHttpClientInterface $client)
+    public function __construct(array $options = [], ClientInterface $client = null)
     {
         $this->options = array_merge($this->options, $options);
-        $client = $client ?: new Client($this->options['base_url'], $this->options);
+        $client = $client ?: new Client($this->options);
         $this->client = $client;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function get($path, array $parameters = array(), array $headers = array())
+    public function get($path, array $parameters = [], array $headers = [])
     {
-        return $this->request($path, null, 'GET', $headers, array('query' => $parameters));
+        return $this->request($path, null, 'GET', $headers, ['query' => $parameters]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function post($path, $body = null, array $headers = array())
+    public function post($path, $body = null, array $headers = [])
     {
         return $this->request($path, $body, 'POST', $headers);
     }
@@ -58,7 +57,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function patch($path, $body = null, array $headers = array())
+    public function patch($path, $body = null, array $headers = [])
     {
         return $this->request($path, $body, 'PATCH', $headers);
     }
@@ -66,7 +65,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function delete($path, $body = null, array $headers = array())
+    public function delete($path, $body = null, array $headers = [])
     {
         return $this->request($path, $body, 'DELETE', $headers);
     }
@@ -74,7 +73,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function put($path, $body = null, array $headers = array())
+    public function put($path, $body = null, array $headers = [])
     {
         return $this->request($path, $body, 'PUT', $headers);
     }
@@ -82,7 +81,7 @@ class HttpClient implements HttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function request($path, $body = null, array $parameters = [], $httpMethod = 'GET', array $headers = [], array $options = [])
+    public function request($path, $body = null, $httpMethod = 'GET', array $headers = [], array $options = [])
     {
         $request = $this->createRequest($httpMethod, $path, $body, $headers, $options);
         return $this->client->send($request);
