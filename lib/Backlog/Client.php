@@ -14,7 +14,7 @@ use GuzzleHttp\ClientInterface as HttpClientInterface;
  *
  * @property HttpClientInterface $httpClient
  */
-class Client implements ApiClientInterface
+class Client implements ClientInterface
 {
     protected  $httpClient;
 
