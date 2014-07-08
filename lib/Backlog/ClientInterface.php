@@ -23,4 +23,10 @@ interface ClientInterface {
      * @return mixed
      */
     public function authenticate($apiKey);
+
+
+    /**
+     * HttpClientを返す
+     */
+    public function getHttpClient();
 }

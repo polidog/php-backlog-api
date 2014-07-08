@@ -49,4 +49,14 @@ class Client implements ClientInterface
     {
         return;
     }
+
+    /**
+     * HTTPClientを取得する
+     * @return HttpClientInterface
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
 }
