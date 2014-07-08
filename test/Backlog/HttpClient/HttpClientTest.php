@@ -25,6 +25,17 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function オプションがセット出来るはず()
+    {
+        $httpClient = new TestHttpClient([],$this->getBrowserMock());
+        $httpClient->setOption('timeout', 3333);
+
+        $this->assertEquals(3333, $httpClient->getOption('timeout'));
+    }
+
+    /**
      * GuzzleHttpClientのモックを作成する
      * @param array $methods
      * @return \PHPUnit_Framework_MockObject_MockObject
