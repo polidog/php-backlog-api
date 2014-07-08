@@ -6,7 +6,7 @@
  * Time: 20:40
  */
 
-interface ClientInterface {
+interface ApiClientInterface {
 
     /**
      * APIを実行する

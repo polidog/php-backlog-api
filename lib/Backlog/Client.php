@@ -10,8 +10,10 @@
  * API用クライアントクラス
  * Class Client
  */
-class Client implements ClientInterface
+class Client implements ApiClientInterface
 {
+
+
     /**
      * {@inheritdoc}
      */
