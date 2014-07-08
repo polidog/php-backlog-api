@@ -8,7 +8,7 @@
 namespace Backlog;
 
 use Backlog\Exception\NoSupportApiException;
-use GuzzleHttp\ClientInterface as HttpClientInterface;
+use Backlog\HttpClient\HttpClientInterface;
 
 /**
  * API用クライアントクラス
