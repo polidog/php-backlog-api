@@ -14,7 +14,7 @@ namespace Backlog\Api;
  */
 interface ApiInterface
 {
-    public function get($path, array $parameters = [], $requestHeaders = []);
+    public function get($path, array $requestHeaders = []);
 
     public function post($path, array $parameters = [], $requestHeaders = []);
 
