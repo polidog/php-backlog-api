@@ -6,13 +6,27 @@
  * Time: 20:39
  */
 
+use GuzzleHttp\ClientInterface as HttpClientInterface;
+
 /**
  * API用クライアントクラス
  * Class Client
+ *
+ * @property HttpClientInterface $httpClient
  */
 class Client implements ApiClientInterface
 {
+    protected  $httpClient;
 
+    /**
+     * @param HttpClientInterface $httpClient
+     */
+    public function __construct(HttpClientInterface $httpClient = null)
+    {
+        if ($httpClient instanceof HttpClientInterface) {
+            $this->httpClient = $httpClient;
+        }
+    }
 
     /**
      * {@inheritdoc}
