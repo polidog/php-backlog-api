@@ -28,39 +28,42 @@ interface HttpClientInterface {
 
     /**
      * @param string $path
-     * @param array $parameters
+     * @param string $body
      * @param array $headers
      * @return Response
      */
-    public function post($path, array $parameters = [], array $headers = []);
+    public function post($path, $body = null, array $headers = []);
 
 
     /**
      * putリクエストをおくるお
      * @param string $path
-     * @param array $parameters
+     * @param string $body
      * @param array $headers
      * @return Response
      */
-    public function put($path, array $parameters = [], array $headers = []);
+    public function put($path, $body = null, array $headers = []);
 
     /**
      * @param $path
-     * @param array $body
+     * @param string $body
      * @param array $headers
      * @return Response
      */
-    public function delete($path, array $body = [], array $headers = []);
+    public function delete($path, $body = null, array $headers = []);
 
     /**
      * リクエストをおくる
+     *
      * @param $path
+     * @param null $body
      * @param array $parameters
      * @param string $httpMethod
      * @param array $headers
-     * @return Response
+     * @param array $options
+     * @return mixed
      */
-    public function request($path, array $parameters = [], $httpMethod = 'GET', array $headers = []);
+    public function request($path, $body = null, array $parameters = [], $httpMethod = 'GET', array $headers = [], array $options = []);
 
     /**
      * 認証
