@@ -36,15 +36,31 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function GETのリクエストを送信する()
+    {
+        $path = "/hoge/fuga";
+        $parameters = ['a' => 'b'];
+        $headers = ['c' => 'd'];
+        $httpClient = new TestHttpClient([], $this->getBrowserMock());
+        $httpClient->get($path, $parameters, $headers);
+    }
+
+    /**
      * GuzzleHttpClientのモックを作成する
      * @param array $methods
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     protected function getBrowserMock(array $methods = [])
     {
-        $mock = $this->getMockBUilder('GuzzleHttp\Client')
-            ->setMethods(array_merge(['send','createResponse'],$methods))
+        $mock = $this->getMockBuilder('GuzzleHttp\Client')
+            ->setMethods(array_merge(['send','createRequest'],$methods))
             ->getMock();
+
+        $mock->expects($this->any())
+            ->method('createRequest')
+            ->will($this->returnValue($this->getMock('GuzzleHttp\Message\Request', [], ['GET', 'some'])));
 
         return $mock;
     }
